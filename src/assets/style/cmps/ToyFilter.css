@@ -1,0 +1,12 @@
+.toy-filter {
+    background-color: var(--clr2bg);
+    padding: 1em;
+    border-radius: 10px;
+}
+.toy-filter .filter, .search-key{
+    margin-inline-end: 15px;
+    margin-block-end: 15px;
+    border-radius: 10px;
+    padding: 5px;
+
+}

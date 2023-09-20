@@ -1,0 +1,16 @@
+.toy-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.toy-info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    gap: 10px;
+
+}

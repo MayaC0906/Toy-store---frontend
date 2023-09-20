@@ -1,0 +1,21 @@
+.toy-edit{
+    display: flex;
+    flex-direction: column;
+}
+
+.toy-edit form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: fit-content;
+}
+
+.toy-edit label{
+    font-weight: bold;
+}
+
+.toy-edit input{
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}

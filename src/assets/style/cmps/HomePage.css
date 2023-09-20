@@ -1,0 +1,17 @@
+.home-page {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
+   
+}
+
+.home-page h1{
+    font-size: 2rem;
+}
+.home-page img {
+    height: 300px;
+    width: auto;
+    
+}
