@@ -2,10 +2,10 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { useSelector } from "react-redux"
+import { LabelFilter } from "./LabelFilter.jsx"
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
-    const labels = useSelector(storeState => storeState.toyModule.labels)
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
     onSetFilter = useRef(utilService.debounce(onSetFilter))
@@ -35,7 +35,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
-    const { searchKey, sortBy, inStock, toyLabel } = filterByToEdit
+    const { searchKey, sortBy, inStock, toyLabels } = filterByToEdit
     return (
         <section className="toy-filter full main-layout">
             <h2>Toys Filter:</h2>
@@ -55,13 +55,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <option value={false}>Not In Stock</option>
                 </select>
 
-                <label htmlFor="toyLabel">Filter By Labels</label>
-                <select className='filter' value={toyLabel} onChange={handleChange} name="toyLabel" id="toyLabel">
-                <option value=''>Choose label</option>
-                    {labels.map(label => {
-                        return <option key={label} value={label}>{label}</option>
-                    })}
-                </select>
+                <LabelFilter/>
 
                 <input className='filter' value={searchKey} onChange={handleChange} type="search" placeholder="By toy's name" id="searchKey" name="searchKey" />
             </form>
@@ -69,3 +63,4 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         </section>
     )
 }
+

@@ -6,6 +6,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { loadToys, removeToy, setFilter } from '../store/actions/toy.actions.js'
+import { toyService } from '../services/toy.service.js'
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
@@ -41,6 +42,7 @@ export function ToyIndex() {
             <main>
 
                 <button><Link to='/toy/Edit'>Add Toy</Link></button>
+                <button onClick={()=>{setFilter(toyService.getDefaultFilter())}}><Link to='/dashBoard'>Dash Board</Link></button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 <ToyList toys={toys} onRemoveToy={onRemoveToy} />
             </main>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 export function ToyEdit() {
 
-    const [toyToEdit, settoyToEdit] = useState(toyService.getEmptyToy())
+    const [toyToEdit, settoyToEdit] = useState({name:'', price:''})
     console.log(toyToEdit);
     const navigate = useNavigate()
     const params = useParams()
