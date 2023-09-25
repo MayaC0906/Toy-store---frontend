@@ -7,7 +7,7 @@ import { LabelFilter } from "../cmps/LabelFilter.jsx"
 
 export function ToyEdit() {
 
-    const [toyToEdit, settoyToEdit] = useState({name:'', price:'', labels:[]})
+    const [toyToEdit, settoyToEdit] = useState({name:'', price:'', labels:[], inStock:false})
     console.log(toyToEdit);
     const navigate = useNavigate()
     const params = useParams()
@@ -72,7 +72,7 @@ export function ToyEdit() {
     }
 
 
-    const { name, price } = toyToEdit
+    const { name, price, inStock } = toyToEdit
 console.log('labels from edit',toyToEdit.labels);
     return (
         <section className="toy-edit">
@@ -82,6 +82,9 @@ console.log('labels from edit',toyToEdit.labels);
                 <input onChange={handleChange} type="text" name="name" value={name} id="name" />
                 <label htmlFor="price">Price:</label>
                 <input onChange={handleChange} type="number" name="price" value={price} id="price" />
+                <label htmlFor="inStock"  className="in-stock-filter">In Stock: 
+                <input onChange={handleChange} type="checkBox" name="inStock" checked={inStock} id="inStock"/>
+                </label>
                 <LabelFilter handleChange={handleChange} labels={toyToEdit.labels}/>
                 {toyToEdit._id ? <button>Save</button> : <button>Add</button>}
             </form>

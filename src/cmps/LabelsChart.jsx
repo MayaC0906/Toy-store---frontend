@@ -59,7 +59,7 @@ export function LabelsChart() {
             labels:  labelsArr ,
             datasets: [
                 {
-                    label: 'Avarege price per label',
+                    label: 'Avarege price for label',
                     data: avgPrices ,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -93,6 +93,7 @@ export function LabelsChart() {
         <div>
           {data && (
             <section style={{ maxWidth: '60vw', margin: 'auto' }}>
+                <h1>Avarege price per label</h1>
               <Doughnut data={data} />
             </section>
           )}

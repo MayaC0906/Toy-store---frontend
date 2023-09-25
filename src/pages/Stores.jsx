@@ -32,7 +32,7 @@ export function Stores() {
                 <button name={'Kfar Saba'} onClick={onCityChosen}>Kfar Saba</button>
             </section>
 
-            <div style={{ height: '50vh', width: '100%' }}>
+            <div style={{ height: '50vh', width: '80vw' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyCJkli7XyzkfRFnnkT6QiKd4BnRGr2AUPI" }}
                     center={props.center}

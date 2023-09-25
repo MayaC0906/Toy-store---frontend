@@ -1,15 +1,11 @@
 .toy-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 20px;
 }
 
-.toy-list ul {
-    padding: 0;
-}
 
-.toy-list li {
+/* .toy-list li {
     display: grid;
     grid-template-columns: 3fr 1fr 2fr 1fr 2fr 1fr;
     border-radius: 10px;
@@ -17,4 +13,4 @@
     padding: 8px 15px;
     margin: 0.5em;
     border-bottom: 1px solid black;
-}
+} */
