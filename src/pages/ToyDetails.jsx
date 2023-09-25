@@ -45,7 +45,7 @@ export function ToyDetails() {
                 <h2>Toy name: {toy.name}</h2>
                 <h2>Price: {toy.price}</h2>
                 <ul>Labels:
-                    {toy.labels.map(label => <li>{label}</li>)}
+                    {toy.labels? toy.labels.map(label => <li>{label}</li>): <h2>No labels</h2>}
                 </ul>
                 <h3>Created at: {utilService.formatDate(toy.createdAt)}</h3>
                 {toy.inStock ? <h3>In stock</h3> : <h3>In stock</h3>}

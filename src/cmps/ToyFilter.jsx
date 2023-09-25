@@ -35,7 +35,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
-    const { searchKey, sortBy, inStock, toyLabels } = filterByToEdit
+    const { searchKey, sortBy, inStock} = filterByToEdit
     return (
         <section className="toy-filter full main-layout">
             <h2>Toys Filter:</h2>
@@ -55,7 +55,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <option value={false}>Not In Stock</option>
                 </select>
 
-                <LabelFilter/>
+                <LabelFilter handleChange={handleChange}/>
 
                 <input className='filter' value={searchKey} onChange={handleChange} type="search" placeholder="By toy's name" id="searchKey" name="searchKey" />
             </form>

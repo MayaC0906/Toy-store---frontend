@@ -1,56 +1,78 @@
 import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { setFilter } from '../store/actions/toy.actions';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
 import { useSelector } from 'react-redux';
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
-
-export function LabelFilter() {
-    const labels = useSelector(storeState => storeState.toyModule.labels)
-    let filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-    const [selectedLabels, setSelectedLabels] = React.useState([]);
-
-    React.useEffect(() => {
-        let newFilter = { ...filterBy, toyLabels: selectedLabels }
-        setFilter(newFilter)
-    }, [selectedLabels])
-
-    const handleLabelSelection = (event, newValue) => {
-        setSelectedLabels(newValue);
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+            personName.indexOf(name) === -1
+                ? theme.typography.fontWeightRegular
+                : theme.typography.fontWeightMedium,
     };
-
-    return (
-        <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={labels}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option}
-            value={selectedLabels}
-            onChange={handleLabelSelection}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                    <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
-                    />
-                    {option}
-                </li>
-            )}
-            style={{ width: 300 }}
-            className='filter'
-            renderInput={(params) => (
-                <TextField {...params} label="Filter By Labels" />
-            )}
-        />
-    );
 }
 
+export function LabelFilter({ handleChange}) {
+    const labelsOptions = useSelector(storeState => storeState.toyModule.labels)
+    const theme = useTheme();
 
+const [valueToShow, setValueToShow ] = React.useState([])
+
+    function onChangeFilter(ev){
+    let target = {name:ev.target.name, value:ev.target.value}
+    setValueToShow(ev.target.value)
+    handleChange({target})
+    }
+    
+
+    return (
+        <div>
+            <FormControl sx={{ m: 1, width: 300 }} className='labels'>
+                <InputLabel id="demo-multiple-chip-label">Choose Labels</InputLabel>
+                <Select
+                    name="labels"
+                    labelId="demo-multiple-chip-label"
+                    id="demo-multiple-chip"
+                    multiple
+                    value={valueToShow}
+                    onChange={onChangeFilter}
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {labelsOptions.map((label) => (
+                        <MenuItem
+                            key={label}
+                            value={label}
+                            style={getStyles(label, label, theme)}
+                        >
+                            {label}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </div>
+    );
+}

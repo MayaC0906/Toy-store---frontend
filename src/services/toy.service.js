@@ -28,12 +28,13 @@ function save(toy) {
     if (toy._id) {
         return httpService.put(BASE_URL, toy)
     } else {
+        console.log('hi from put', toy);
         return httpService.post(BASE_URL, toy)
     }
 }
 
 function getDefaultFilter() {
-    return { searchKey: '', inStock: '', sortBy: '', toyLabels: [] }
+    return { searchKey: '', inStock: '', sortBy: '', labels: [] }
 }
 
 

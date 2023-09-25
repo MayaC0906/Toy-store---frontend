@@ -10,7 +10,7 @@ import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
 import { Stores } from './pages/Stores'
-import { LabelsChart } from './cmps/LabelsChart'
+import { DashBoard } from './pages/DashBoard'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
                     <Route element={<AboutUs />} path="/about" />
                     <Route element={<Stores />} path="/store" />
                     <Route element={<ToyIndex />} path="/toy" />
-                    <Route element={<LabelsChart />} path="/dashBoard" />
+                    <Route element={<DashBoard />} path="/dashBoard" />
                     <Route element={<ToyDetails />} path="/toy/:toyId" />
                     <Route element={<ToyEdit />} path="/toy/edit" />
                     <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
