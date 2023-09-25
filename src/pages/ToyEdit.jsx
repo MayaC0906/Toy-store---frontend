@@ -3,10 +3,11 @@ import { addToy, updateToy } from "../store/actions/toy.actions.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { LabelFilter } from "../cmps/LabelFilter.jsx"
 
 export function ToyEdit() {
 
-    const [toyToEdit, settoyToEdit] = useState({name:'', price:''})
+    const [toyToEdit, settoyToEdit] = useState({name:'', price:'', labels:[]})
     console.log(toyToEdit);
     const navigate = useNavigate()
     const params = useParams()
@@ -72,7 +73,7 @@ export function ToyEdit() {
 
 
     const { name, price } = toyToEdit
-
+console.log('labels from edit',toyToEdit.labels);
     return (
         <section className="toy-edit">
             {toyToEdit._id ? <h2> Edit Toy</h2> : <h2>Add Toy:</h2>}
@@ -81,6 +82,7 @@ export function ToyEdit() {
                 <input onChange={handleChange} type="text" name="name" value={name} id="name" />
                 <label htmlFor="price">Price:</label>
                 <input onChange={handleChange} type="number" name="price" value={price} id="price" />
+                <LabelFilter handleChange={handleChange} labels={toyToEdit.labels}/>
                 {toyToEdit._id ? <button>Save</button> : <button>Add</button>}
             </form>
         </section>
